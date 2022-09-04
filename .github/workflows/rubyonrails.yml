@@ -56,3 +56,16 @@ jobs:
         run: bundle exec brakeman -q -w2
       - name: Lint Ruby files
         run: bundle exec rubocop --parallel
+
+  deploy:
+    if: ${{ github.event_name == 'pull_request' || github.ref_name == 'master' }}
+    needs: test
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "pay2mail"
+          heroku_email: "agsjustforfun@gmx.de"

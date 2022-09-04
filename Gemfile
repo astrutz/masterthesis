@@ -56,6 +56,8 @@ group :development, :test do
   # Security tools
   gem 'brakeman'
   gem 'bundler-audit'
+  # Database
+  gem 'pg'
   gem 'ruby_audit'
   # Linting
   gem 'rubocop'

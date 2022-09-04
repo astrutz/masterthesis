@@ -69,4 +69,3 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "pay2mail"
           heroku_email: "agsjustforfun@gmx.de"
-          stack: heroku-20

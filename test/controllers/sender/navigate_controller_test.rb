@@ -19,10 +19,10 @@ module Send
     test 'should redirect to overview with wrong query param' do
       get '/send/navigate?commit=foobar'
       assert_response :redirect
-      assert_redirected_to "/send"
+      assert_redirected_to '/send'
     end
 
-    test "should redirect with recipient email" do
+    test 'should redirect with recipient email' do
       get '/send/navigate?commit=Aufkommen einsehen&recipient=foobar'
       assert_response :redirect
       assert_redirected_to '/send/capacity?recipient=foobar'

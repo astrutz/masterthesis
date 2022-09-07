@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  root 'test#index'
+  localized do
+    namespace :sender do
+      root 'overview#index'
+      get :capacities, to: 'capacities#index'
+      get :priorities, to: 'priorities#index'
+    end
+  end
 end

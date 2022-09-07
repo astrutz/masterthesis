@@ -1,0 +1,2 @@
+module Sender::CapacitiesHelper
+end

@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class TestControllerTest < ActionDispatch::IntegrationTest
+class OverviewControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

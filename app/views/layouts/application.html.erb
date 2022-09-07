@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
   <head>
-    <title>Masterthesis</title>
+    <title>Pay2Mail</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,14 @@
   </head>
 
   <body>
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+      <%= link_to "Pay2Mail", :sender_root, class: 'navbar-brand' %>
+    </div>
+  </nav>
+
+  <div class="container">
     <%= yield %>
+  </div>
   </body>
 </html>

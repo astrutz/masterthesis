@@ -1,2 +1,19 @@
-<%= link_to "Aufkommen einsehen", sender_capacities_path %>
-<%= link_to "E-Mail priorisieren", sender_priorities_path %>
+<%= form_with url: "/send/navigate", method: :get do |form| %>
+<div class="row mt-4">
+  <div class="col-6">
+    <label for="recipientEmail" class="form-label">E-Mail Adresse des Empfängers</label>
+    <%= form.email_field :recipient, class: "form-control" %>
+    <div id="recipientEmailHelp" class="form-text">Bitte geben Sie die E-Mail Adresse des potenziellen Empfängers an.</div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-6">
+    <%= form.submit "Aufkommen einsehen", class: "btn btn-dark" %>
+  </div>
+  <div class="col-6">
+    <%= form.submit "E-Mail priorisieren", class: "btn btn-dark" %>
+  </div>
+</div>
+
+<% end %>

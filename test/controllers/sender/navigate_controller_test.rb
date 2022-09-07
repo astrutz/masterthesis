@@ -2,8 +2,8 @@
 
 require 'test_helper'
 
-module Sender
-  class PrioritiesControllerTest < ActionDispatch::IntegrationTest
+module Send
+  class NavigateControllerTest < ActionDispatch::IntegrationTest
     # test "the truth" do
     #   assert true
     # end

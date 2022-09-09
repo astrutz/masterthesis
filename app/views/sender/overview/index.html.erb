@@ -1,0 +1,42 @@
+<div class="row mt-4">
+  <div class="col-12">
+    <h1>Pay2Mail: An wen wollen Sie eine E-Mail versenden?</h1>
+  </div>
+</div>
+
+<%# TODO: Show when the email is due to be answered %>
+<%# TODO: Move this to a "success-page" after POST /priority %>
+<% if params[:price] %>
+  <div class="row mt-4">
+    <div class="col-10">
+      <div class="alert alert-success" role="alert">
+        Ihre Zahlung in Höhe von <%= params[:price] %>,00 € war erfolgreich. Ihr Zugangscode lautet:
+        <strong><%= SecureRandom.uuid %></strong>.
+        Bitte speichern Sie diesen Code und setzen Sie ihn als E-Mail Header "X-Pay2Mail-Priority" in Ihrem E-Mail
+        Client.
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= form_with url: sender_navigate_path, method: :get do |form| %>
+  <div class="row mt-4">
+    <div class="col-sm-6">
+      <label for="recipientEmail" class="form-label">E-Mail Adresse des Empfängers</label>
+      <%= form.email_field :recipient, class: "form-control", value: @recipient_address, required: true %>
+      <div id="recipientEmailHelp" class="form-text">Bitte geben Sie die E-Mail Adresse des potenziellen Empfängers
+        an.
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-sm-6">
+      <%= form.submit "Aufkommen einsehen", class: "btn btn-primary" %>
+    </div>
+    <div class="col-sm-6">
+      <%= form.submit "E-Mail priorisieren", class: "btn btn-primary" %>
+    </div>
+  </div>
+
+<% end %>

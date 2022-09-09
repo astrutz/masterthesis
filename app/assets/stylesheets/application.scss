@@ -1,3 +1,5 @@
+$primary: #650265;
+
 @import "bootstrap";
 
 /*
@@ -15,3 +17,5 @@
  *= require_tree .
  *= require_self
  */
+
+@import "pages/*";

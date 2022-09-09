@@ -1,0 +1,19 @@
+.capacities {
+  .capacities__information {
+    text-align: center;
+  }
+
+  .capacities__icon {
+    display: flex;
+    justify-content: center;
+
+    i {
+      background-color: $primary;
+      display: inline-block;
+      border: 2px solid black;
+      border-radius: 8px;
+      font-size: 2rem;
+      color: white;
+    }
+  }
+}

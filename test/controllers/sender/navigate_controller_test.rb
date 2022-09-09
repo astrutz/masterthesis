@@ -13,7 +13,7 @@ module Send
     test 'should redirect to priorities with given query param' do
       get '/send/navigate?commit=E-Mail priorisieren'
       assert_response :redirect
-      assert_redirected_to '/send/prioritize'
+      assert_redirected_to '/send/priority'
     end
 
     test 'should redirect to overview with wrong query param' do

@@ -24,7 +24,7 @@
           <div class="capacities__icon mb-3">
             <i class="bi bi-inbox p-2"></i>
           </div>
-          <p class="capacities__information"><%= @recipient %> hat aktuell unbearbeitete <%= @mails %> E-Mails
+          <p class="capacities__information"><%= @recipient %> hat aktuell <%= @mails %> unbearbeitete E-Mails
             offen.</p>
         </div>
       </div>
@@ -46,6 +46,7 @@
           <div class="capacities__icon mb-3">
             <i class="bi bi-calendar-event p-2"></i>
           </div>
+          <%# TODO: Exclude this calculation from here %>
           <p class="capacities__information">Würden Sie jetzt eine E-Mail absenden, würde sie spätestens
             am <%= l (@mails / @performance + 1).to_f.ceil.days.from_now.to_date %> beantwortet werden.</p>
         </div>
@@ -57,7 +58,7 @@
     <div class="col-12" style="text-align: center">
       <h2>Soll Ihre E-Mail schneller bearbeitet werden?</h2>
       <p>Dann priorisieren Sie Ihre E-Mail mit Pay2Mail in wenigen Schritten.</p>
-      <%= link_to "E-Mail priorisieren", sender_priorities_path, class: "btn btn-primary" %>
+      <%= link_to "E-Mail priorisieren", sender_priorities_path(recipient: @recipient), class: "btn btn-primary" %>
     </div>
   </div>
 

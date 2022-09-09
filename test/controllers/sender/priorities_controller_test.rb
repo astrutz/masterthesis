@@ -5,7 +5,7 @@ require 'test_helper'
 module Sender
   class PrioritiesControllerTest < ActionDispatch::IntegrationTest
     test 'should respond 200' do
-      get '/send/prioritize'
+      get '/send/priority'
       assert_response :success
     end
   end

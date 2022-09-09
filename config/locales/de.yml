@@ -1,5 +1,5 @@
 de:
   routes:
     sender: "send"
-    priorities: "prioritize"
+    priorities: "priority"
     capacities: "capacity"

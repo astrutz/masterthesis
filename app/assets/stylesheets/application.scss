@@ -17,5 +17,14 @@ $primary: #650265;
  *= require_tree .
  *= require_self
  */
-
 @import "pages/*";
+
+//Remove arrow buttons in input[type=number] fields
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}

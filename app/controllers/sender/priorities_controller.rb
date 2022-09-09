@@ -2,5 +2,8 @@
 
 module Sender
   class PrioritiesController < ApplicationController
+    def index
+      @recipient = params[:recipient]
+    end
   end
 end

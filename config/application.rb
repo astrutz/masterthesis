@@ -14,5 +14,7 @@ module Masterthesis
     config.load_defaults 7.0
     I18n.available_locales = [:de]
     config.i18n.default_locale = :de
+    config.assets.compile = true
+    config.assets.precompile =  ['*.js', '*.css', '*.css.erb'] 
   end
 end

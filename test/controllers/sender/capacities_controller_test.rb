@@ -4,7 +4,7 @@ require 'test_helper'
 
 module Sender
   class CapacitiesControllerTest < ActionDispatch::IntegrationTest
-    test 'should respond with 200' do
+    test '/send/capacity should respond with 200' do
       get '/send/capacity'
       assert_response :success
     end

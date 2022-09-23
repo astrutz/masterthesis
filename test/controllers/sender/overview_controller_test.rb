@@ -3,7 +3,7 @@
 require 'test_helper'
 
 class OverviewControllerTest < ActionDispatch::IntegrationTest
-  test 'should respond with 200' do
+  test '/send should respond with 200' do
     get '/send'
     assert_response :success
   end

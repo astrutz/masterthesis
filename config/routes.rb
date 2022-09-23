@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root 'overview#index'
+
   localized do
     namespace :sender do
       root 'overview#index'
@@ -8,5 +10,8 @@ Rails.application.routes.draw do
       get :capacities, to: 'capacities#index'
       get :priorities, to: 'priorities#index'
     end
+    # namespace :recipient do
+    #
+    # end
   end
 end

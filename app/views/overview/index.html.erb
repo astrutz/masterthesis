@@ -1,0 +1,39 @@
+<main class="overview">
+
+  <div class="row mt-4">
+    <div class="col-12">
+      <h1>Willkommen bei Pay2Mail! Was möchten Sie tun?</h1>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-sm-6 mb-4">
+      <%= link_to sender_root_path, class: "link_wrapper" do %>
+        <div class="card">
+          <div class="card-body">
+            <div class="overview__icon mb-3">
+              <i class="bi bi-bar-chart-steps p-2"></i>
+            </div>
+            <p class="overview__information">Ich bin Absender und möchte das Aufkommen meines Empfängers einsehen oder
+              eine E-Mail versenden.</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-sm-6 mb-4">
+      <%#= TODO: Change path when recipient page is there %>
+      <%= link_to sender_root_path, class: "link_wrapper" do %>
+        <div class="card">
+          <div class="card-body">
+            <div class="overview__icon mb-3">
+              <i class="bi bi-calendar-event p-2"></i>
+            </div>
+            <p class="overview__information">Ich bin Empfänger und möchte meinen Posteingang einsehen oder meine
+              Bearbeitungsleistung anpassen.</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</main>

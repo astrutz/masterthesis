@@ -2,7 +2,7 @@
 
   <div class="row mt-4">
     <div class="col-12">
-      <h1>E-Mail Aufkommen von <%= @recipient_address %></h1>
+      <h1>E-Mail Aufkommen von <%= @recipient.name %></h1>
     </div>
   </div>
 
@@ -24,7 +24,7 @@
           <div class="capacities__icon mb-3">
             <i class="bi bi-inbox p-2"></i>
           </div>
-          <p class="capacities__information"><%= @recipient_address %> hat aktuell <%= @mails_count %> unbearbeitete E-Mails
+          <p class="capacities__information"><%= @recipient.name %> hat aktuell <%= @mails_count %> unbearbeitete E-Mails
             offen.</p>
         </div>
       </div>
@@ -35,7 +35,7 @@
           <div class="capacities__icon mb-3">
             <i class="bi bi-bar-chart-steps p-2"></i>
           </div>
-          <p class="capacities__information"><%= @recipient_address %> bearbeitet mindestens <%= @editing_performance %> E-Mails pro
+          <p class="capacities__information"><%= @recipient.name %> bearbeitet mindestens <%= @editing_performance %> E-Mails pro
             Tag.</p>
         </div>
       </div>
@@ -60,6 +60,5 @@
       <%= link_to "E-Mail priorisieren", sender_priorities_path(recipient: @recipient_address), class: "btn btn-primary" %>
     </div>
   </div>
-
 
 </main>

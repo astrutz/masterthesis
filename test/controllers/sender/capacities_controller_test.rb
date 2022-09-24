@@ -17,11 +17,17 @@ module Sender
       assert_select '.alert', 0
     end
 
-    test 'should show correct response date' do
+    test 'should show correct target date' do
       recipient = recipients(:one)
       get "/send/capacity?recipient=#{recipient.email_address}"
       assert_response :success
       assert_match I18n.l(1.days.from_now.to_date), response.body
+    end
+
+    test 'should show recipient not found' do
+      get '/send/capacity?recipient=foobar'
+      assert_response :not_found
+      assert_select '.capacities__not_found .alert', 1
     end
   end
 end

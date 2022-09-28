@@ -5,7 +5,6 @@ one:
   recipient_address: MyString
   subject: MyString
   send_at: 2022-09-23 18:00:54
-  header_fields: MyText
   content: MyText
 
 two:
@@ -13,5 +12,4 @@ two:
   recipient_address: MyString
   subject: MyString
   send_at: 2022-09-23 18:00:54
-  header_fields: MyText
   content: MyText

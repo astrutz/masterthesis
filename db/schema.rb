@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_220_928_121_139) do # rubocop:disable Metrics/BlockLength
+ActiveRecord::Schema[7.0].define(version: 20_221_003_085_936) do # rubocop:disable Metrics/BlockLength
   create_table 'credentials', force: :cascade do |t|
     t.string 'server'
     t.integer 'port'
@@ -40,6 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 20_220_928_121_139) do # rubocop:disab
     t.text 'content'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.string 'value_header'
     t.index ['inbox_id'], name: 'index_messages_on_inbox_id'
   end
 
@@ -69,13 +70,10 @@ ActiveRecord::Schema[7.0].define(version: 20_220_928_121_139) do # rubocop:disab
     t.string 'recipient_address'
     t.datetime 'send_at', precision: nil
     t.integer 'amount'
-    t.integer 'message_id'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-    t.index ['message_id'], name: 'index_values_on_message_id'
   end
 
   add_foreign_key 'credentials', 'recipients'
   add_foreign_key 'recipients', 'inboxes'
-  add_foreign_key 'values', 'messages'
 end

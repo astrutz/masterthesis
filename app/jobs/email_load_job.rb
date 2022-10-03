@@ -3,9 +3,9 @@
 class EmailLoadJob < ApplicationJob
   queue_as :default
 
-  def perform(*_args)
+  def perform(*_args, recipients: Recipient.all)
     puts 'Job started'
-    Recipient.all.each do |recipient|
+    recipients.each do |recipient|
       puts "Checking #{recipient.username}"
       credential = recipient.credential
       establish_connection(credential)

@@ -18,6 +18,7 @@ module Sender
     def fetch_recipient
       recipient_address = params[:recipient]
       @recipient = Recipient.find_by(email_address: recipient_address)
+      EmailLoadJob.perform_now(recipients: [@recipient]) if @recipient.present? && params[:fetch].nil?
     end
   end
 end

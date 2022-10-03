@@ -44,8 +44,7 @@ class EmailLoadJob < ApplicationJob
       recipient = Recipient.find_by(email_address: to)
       inbox = Inbox.find_by(recipient: recipient)
       message = Message.new(inbox: inbox, sender_address: from, recipient_address: to, subject: subject, send_at: send_at, content: content)
-      puts value_header # todo
-      # message.value = value_header if value_header.present? todo: change db schema first
+      message.value_header = value_header if value_header.present?
       message.save
     end
   end

@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_221_003_085_936) do # rubocop:disable Metrics/BlockLength
+ActiveRecord::Schema[7.0].define(version: 20_221_003_130_519) do # rubocop:disable Metrics/BlockLength
   create_table 'credentials', force: :cascade do |t|
     t.string 'server'
     t.integer 'port'
@@ -72,6 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 20_221_003_085_936) do # rubocop:disab
     t.integer 'amount'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.string 'uuid'
   end
 
   add_foreign_key 'credentials', 'recipients'

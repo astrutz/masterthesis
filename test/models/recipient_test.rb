@@ -3,7 +3,9 @@
 require 'test_helper'
 
 class RecipientTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'should create recipient' do
+    recipient = Recipient.new(name: '', email_address: '', username: '', password: '', editing_performance_per_day: 1, inbox: inboxes(:one))
+    recipient.save
+    assert true
+  end
 end

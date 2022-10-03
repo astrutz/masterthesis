@@ -3,7 +3,9 @@
 require 'test_helper'
 
 class InboxTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'should create inbox' do
+    inbox = Inbox.new(recipient: recipients(:one))
+    inbox.save
+    assert true
+  end
 end

@@ -1,11 +1,29 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  sender_address: MyString
-  recipient_address: MyString
-  amount: 1
+  sender_address: one@sender.com
+  recipient_address: one@recipient.com
+  amount: 15
+  uuid: 200e2d86-4908-40a0-9ae7-75e2837cfadd
+  created_at: 2022-09-13 12:05:54
 
 two:
-  sender_address: MyString
-  recipient_address: MyString
-  amount: 1
+  sender_address: two@sender.com
+  recipient_address: two@recipient.com
+  amount: 6
+  uuid: d51421de-5df5-44ed-9a32-9bb73e3a853d
+  created_at: 2022-09-16 16:15:56
+
+three:
+  sender_address: three@sender.com
+  recipient_address: three@recipient.com
+  amount: 3
+  uuid: a0b2be33-01b5-48b3-9697-12fec4ebf3c3
+  created_at: 2022-09-23 18:00:54
+
+four:
+  sender_address: four@sender.com
+  recipient_address: four@recipient.com
+  amount: 20
+  uuid: 536f109c-2e8c-4629-8541-231cc8d46a27
+  created_at: 2022-09-23 18:00:54

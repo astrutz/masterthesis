@@ -23,7 +23,7 @@ class Message < ApplicationRecord
 
   def self.group_by_amount(editing_performance)
     messages_valued = with_value.sort_by do |x|
-      [x.value_header.to_i, x.send_at]
+      [x.value_header.to_i, -x.send_at.to_i]
     end
     messages_grouped = []
     current_group = []

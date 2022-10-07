@@ -6,7 +6,8 @@
 
 <div class="row mt-4">
   <div class="col-12">
-    <p>Mit Pay2Mail haben Sie die Möglichkeit Ihre E-Mail an <%= @recipient.email_address %> gegen einen Aufpreis zu priorisieren,
+    <p>Mit Pay2Mail haben Sie die Möglichkeit Ihre E-Mail an <%= @recipient.email_address %> gegen einen Aufpreis zu
+      priorisieren,
       sodass sie schneller bearbeitet wird. Die Höhe richtet sich dabei nach den gezahlten Beträgen der bisher
       eingegangenen E-Mails. Ihr voraussichtliches Bearbeitungsdatum ist unter Vorbehalt, da Sie noch überboten werden
       können.</p>
@@ -22,28 +23,14 @@
         <th scope="col">Preis</th>
       </tr>
       </thead>
-      <%# TODO: Use real data %>
       <tbody>
-      <tr>
-        <td><%= l 1.days.from_now.to_date %></td>
-        <td>13,00 €</td>
-      </tr>
-      <tr>
-        <td><%= l 2.days.from_now.to_date %></td>
-        <td>11,00 €</td>
-      </tr>
-      <tr>
-        <td><%= l 4.days.from_now.to_date %></td>
-        <td>7,00 €</td>
-      </tr>
-      <tr>
-        <td><%= l 8.days.from_now.to_date %></td>
-        <td>3,00 €</td>
-      </tr>
-      <tr>
-        <td><%= l 12.days.from_now.to_date %></td>
-        <td>kostenfrei</td>
-      </tr>
+      <% @messages_grouped.each_with_index do |group, i| %>
+        <% next if i < @messages_grouped.size - 1 && group.last.value_header == @messages_grouped[i + 1].last.value_header %>
+        <tr>
+          <td><%= l (group.size == @recipient.editing_performance_per_day ? i + 2 : i + 1).days.from_now.to_date %></td>
+          <td><%= group.last.value_header.present? ? number_to_currency(group.last.value_header.to_f + 1) : "kostenfrei" %></td>
+        </tr>
+      <% end %>
       </tbody>
     </table>
   </div>

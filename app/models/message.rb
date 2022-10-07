@@ -22,7 +22,9 @@ class Message < ApplicationRecord
   end
 
   def self.group_by_amount(editing_performance)
-    messages_valued = with_value.sort_by { |x| x.value_header.to_i || -2_000_000_000 - x.send_at.to_i }
+    messages_valued = with_value.sort_by do |x|
+      [x.value_header.to_i || -1, x.send_at]
+    end
     messages_grouped = []
     current_group = []
     messages_valued.reverse.each_with_index do |message, i|

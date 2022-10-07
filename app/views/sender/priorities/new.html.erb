@@ -1,0 +1,38 @@
+<main class="priorities">
+  <div class="row mt-4">
+    <div class="col-12">
+      <h1>Zahlung abschließen</h1>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-12">
+      <p>Geben Sie Ihre E-Mail Adresse, die E-Mail Adresse ihres Empfängers und den Betrag ein, den sie zahlen
+        möchten.</p>
+    </div>
+  </div>
+
+  <%= form_with model: Value.new, url: { :action => "create", :controller => "sender/priorities" }, method: :post do |form| %>
+    <div class="row mt-4">
+      <div class="col-sm-4 pb-4">
+        <%= form.email_field :sender_address, class: 'form-control', required: true, placeholder: 'Ihre E-Mail Adresse' %>
+      </div>
+      <div class="col-sm-4 pb-4">
+        <%= form.email_field :recipient_address, class: 'form-control', required: true, placeholder: 'E-Mail Adresse des Empfängers' %>
+      </div>
+    </div>
+    <div class="row mt-1">
+      <div class="col-sm-4 pb-4">
+        <div class="input-group">
+          <%= form.number_field :amount, step: 0.5, class: 'form-control', required: true, placeholder: 'Preis' %>
+          <div class="input-group-append">
+            <span class="input-group-text">,00 €</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 pb-4">
+        <%= form.submit "Zahlungsvorgang abschließen", class: "btn btn-primary priorities__submit" %>
+      </div>
+    </div>
+  <% end %>
+</main>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       root 'overview#index'
       get :navigate, to: 'navigate#index'
       get :capacities, to: 'capacities#index'
-      get :priorities, to: 'priorities#index'
+      resources :priorities
     end
     # namespace :recipient do
     #

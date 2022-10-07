@@ -11,7 +11,7 @@ module Sender
         @editing_performance = @recipient.editing_performance_per_day
         @target_date = (@mails_count / @editing_performance + 1).to_f.ceil.days.from_now.to_date
       else
-        render 'sender/capacities/404', status: 404
+        render 'sender/static/404', status: 404
       end
     end
 

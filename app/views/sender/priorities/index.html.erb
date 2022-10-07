@@ -1,12 +1,13 @@
 <div class="row mt-4">
   <div class="col-12">
-    <h1>E-Mail an <%= @recipient %> priorisieren</h1>
+    <h1>E-Mail an <%= @recipient.email_address %> priorisieren</h1>
   </div>
 </div>
 
 <div class="row mt-4">
   <div class="col-12">
-    <p>Mit Pay2Mail haben Sie die Möglichkeit Ihre E-Mail an <%= @recipient %> gegen einen Aufpreis zu priorisieren,
+    <p>Mit Pay2Mail haben Sie die Möglichkeit Ihre E-Mail an <%= @recipient.email_address %> gegen einen Aufpreis zu
+      priorisieren,
       sodass sie schneller bearbeitet wird. Die Höhe richtet sich dabei nach den gezahlten Beträgen der bisher
       eingegangenen E-Mails. Ihr voraussichtliches Bearbeitungsdatum ist unter Vorbehalt, da Sie noch überboten werden
       können.</p>
@@ -22,44 +23,19 @@
         <th scope="col">Preis</th>
       </tr>
       </thead>
-      <%# TODO: Use real data %>
       <tbody>
-      <tr>
-        <td><%= l 1.days.from_now.to_date %></td>
-        <td>13,00 €</td>
-      </tr>
-      <tr>
-        <td><%= l 2.days.from_now.to_date %></td>
-        <td>11,00 €</td>
-      </tr>
-      <tr>
-        <td><%= l 4.days.from_now.to_date %></td>
-        <td>7,00 €</td>
-      </tr>
-      <tr>
-        <td><%= l 8.days.from_now.to_date %></td>
-        <td>3,00 €</td>
-      </tr>
-      <tr>
-        <td><%= l 12.days.from_now.to_date %></td>
-        <td>kostenfrei</td>
-      </tr>
+      <% @messages_grouped.each_with_index do |group, i| %>
+        <% next if i < @messages_grouped.size - 1 && group.last.value_header == @messages_grouped[i + 1].last.value_header %>
+        <tr>
+          <td><%= l (group.size == @recipient.editing_performance_per_day ? i + 2 : i + 1).days.from_now.to_date %></td>
+          <td><%= group.last.value_header.present? ? number_to_currency(group.last.value_header.to_f + 1) : "kostenfrei" %></td>
+        </tr>
+      <% end %>
       </tbody>
     </table>
   </div>
 </div>
 
-<%# TODO: Use payment and POST to /priority %>
-<%= form_with url: sender_root_path(status: :payed), method: :get, class: 'row mt-4' do |form| %>
-  <div class="col-sm-2 pb-4">
-    <div class="input-group">
-      <%= form.number_field :price, class: 'form-control', min: 1.0, step: 1.0, required: true %>
-      <div class="input-group-append">
-        <span class="input-group-text">,00 €</span>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 align-self-center pb-4">
-    <%= form.submit "Zahlungsvorgang abschließen", class: "btn btn-primary" %>
-  </div>
-<% end %>
+<div class="col-sm-2 mt-4 pb-4">
+  <%= link_to "E-Mail priorisieren", new_sender_priority_path, class: "btn btn-primary" %>
+</div>

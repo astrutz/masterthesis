@@ -10,7 +10,7 @@
     <div class="row mt-4">
       <div class="col-12">
         <div class="alert alert-warning" role="alert">
-          Hinweis: <%= @recipient_address %> hat aktuell ein erhöhtes E-Mail Aufkommen, was zu einer Verzögerung in der
+          Hinweis: <%= @recipient.email_address %> hat aktuell ein erhöhtes E-Mail Aufkommen, was zu einer Verzögerung in der
           Bearbeitung führen kann.
         </div>
       </div>
@@ -57,7 +57,7 @@
     <div class="col-12" style="text-align: center">
       <h2>Soll Ihre E-Mail schneller bearbeitet werden?</h2>
       <p>Dann priorisieren Sie Ihre E-Mail mit Pay2Mail in wenigen Schritten.</p>
-      <%= link_to "E-Mail priorisieren", sender_priorities_path(recipient: @recipient_address), class: "btn btn-primary" %>
+      <%= link_to "E-Mail priorisieren", sender_priorities_path(:recipient => @recipient.email_address), class: "btn btn-primary" %>
     </div>
   </div>
 

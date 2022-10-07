@@ -36,17 +36,6 @@
   </div>
 </div>
 
-<%# TODO: Use payment and POST to /priority %>
-<%= form_with url: sender_root_path(status: :payed), method: :get, class: 'row mt-4' do |form| %>
-  <div class="col-sm-2 pb-4">
-    <div class="input-group">
-      <%= form.number_field :price, class: 'form-control', min: 1.0, step: 1.0, required: true %>
-      <div class="input-group-append">
-        <span class="input-group-text">,00 €</span>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 align-self-center pb-4">
-    <%= form.submit "Zahlungsvorgang abschließen", class: "btn btn-primary" %>
-  </div>
-<% end %>
+<div class="col-sm-2 mt-4 pb-4">
+  <%= link_to "E-Mail priorisieren", new_sender_priority_path, class: "btn btn-primary" %>
+</div>

@@ -1,0 +1,26 @@
+<div class="row mt-4">
+  <div class="col-12">
+    <% if @uuid %>
+      <h1>Zahlung erfolgreich!</h1>
+    <% else %>
+      <h1>Zahlung fehlgeschlagen!</h1>
+    <% end %>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-10">
+    <% if @uuid %>
+      <div class="alert alert-success" role="alert">
+        Ihre Zahlung war erfolgreich. Ihr Zugangscode lautet: <strong><%= @uuid %></strong> und ist für 30 Minuten
+        nutzbar.
+        Bitte speichern Sie diesen Code und setzen Sie ihn als E-Mail Header "X-Pay2Mail-Priority" in Ihrem E-Mail
+        Client. Ihre E-Mail wird spätestens am <%= params[:target].to_date %> bearbeitet
+      </div>
+    <% else %>
+      <div class="alert alert-danger" role="alert">
+        Ihre Zahlung ist fehlgeschlagen. Bitte versuchen Sie es später erneut.
+      </div>
+    <% end %>
+  </div>
+</div>

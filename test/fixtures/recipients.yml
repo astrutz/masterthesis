@@ -2,7 +2,7 @@
 
 one:
   name: MyString
-  email_address: MyString
+  email_address: one@recipient.com
   username: MyString
   password_digest: MyString
   editing_performance_per_day: 1
@@ -10,7 +10,31 @@ one:
 
 two:
   name: MyString
-  email_address: MyString
+  email_address: two@recipient.com
+  username: MyString
+  password_digest: MyString
+  editing_performance_per_day: 1
+  inbox: two
+
+three:
+  name: MyString
+  email_address: three@recipient.com
+  username: MyString
+  password_digest: MyString
+  editing_performance_per_day: 1
+  inbox: two
+
+four:
+  name: MyString
+  email_address: four@recipient.com
+  username: MyString
+  password_digest: MyString
+  editing_performance_per_day: 1
+  inbox: two
+
+five:
+  name: MyString
+  email_address: five@recipient.com
   username: MyString
   password_digest: MyString
   editing_performance_per_day: 1

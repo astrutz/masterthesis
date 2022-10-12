@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Sender
+module Send
   class OverviewController < ApplicationController
     def index
       @recipient_address = params[:recipient]

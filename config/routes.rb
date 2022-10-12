@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'overview#index'
 
   localized do
-    namespace :sender do
+    namespace :send do
       root 'overview#index'
       get :navigate, to: 'navigate#index'
       get :capacities, to: 'capacities#index'

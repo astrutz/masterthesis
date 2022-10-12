@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Sender
+module Send
   class PrioritiesController < ApplicationController
     before_action :fetch_recipient
 
@@ -9,7 +9,7 @@ module Sender
         inbox = Inbox.find_by(recipient: @recipient)
         @messages_grouped = Message.where(inbox: inbox).group_by_amount(@recipient.editing_performance_per_day)
       else
-        render 'sender/static/404'
+        render 'send/static/404'
       end
     end
 
@@ -20,7 +20,7 @@ module Sender
       value.recipient_address = form_data[:recipient_address]
       value.amount = form_data[:amount]
       value.save
-      redirect_to sender_priority_path(value.uuid, target: value.target_date)
+      redirect_to send_priority_path(value.uuid, target: value.target_date)
     end
 
     def show

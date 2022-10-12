@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-module Sender
+module Send
   class CapacitiesControllerTest < ActionDispatch::IntegrationTest
     test '/send/capacity should respond with 200' do
       recipient_address = recipients(:one).email_address

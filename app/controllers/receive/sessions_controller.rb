@@ -8,7 +8,7 @@ module Receive
       recipient = Recipient.find_by(username: params[:username])
       if recipient&.authenticate(params[:password])
         session[:recipient_id] = recipient.id
-        redirect_to receive_root_url, notice: 'Logged in!'
+        redirect_to receive_root_url(id: recipient.inbox.id)
       else
         redirect_to receive_login_path(error: 'true')
       end
@@ -16,7 +16,7 @@ module Receive
 
     def destroy
       session[:recipient_id] = nil
-      redirect_to root_url, notice: 'Logged out!'
+      redirect_to root_url
     end
   end
 end

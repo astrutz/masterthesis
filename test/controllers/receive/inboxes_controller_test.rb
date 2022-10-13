@@ -3,7 +3,7 @@
 require 'test_helper'
 
 module Receive
-  class InboxControllerTest < ActionDispatch::IntegrationTest
+  class InboxesControllerTest < ActionDispatch::IntegrationTest
     test 'should redirect to login' do
       get '/receive'
       assert_response :redirect
@@ -12,7 +12,7 @@ module Receive
 
     test 'should get /receive when logged in' do
       post '/receive/sessions', params: { username: recipients(:one).username, password: default_password }
-      get '/receive'
+      get "/receive?id=#{recipients(:one).inbox.id}"
       assert_response :success
     end
   end

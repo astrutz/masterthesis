@@ -1,0 +1,47 @@
+<main class="inboxes">
+
+  <div class="row mt-4">
+    <div class="col-12">
+      <h1>Posteingang von <%= @inbox.recipient.name %></h1>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-12">
+      <p>Folgend sehen Sie Ihre E-Mails für Sie nach gezahltem Gegenwert sortiert. Bitte lassen Sie diese E-Mails in
+        Ihrem E-Mail Client als "ungelesen" markiert und wählen Sie "erledigt" aus, wenn sie bearbeitet wurde. Die
+        E-Mail wird dann automatisch als ungelesen markiert.</p>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-12">
+      <table class="table table-striped table-info table-hover">
+        <thead>
+        <tr>
+          <th class="p-3" scope="col">Absender</th>
+          <th class="p-3" scope="col">Betreff</th>
+          <th class="p-3" scope="col">Wert</th>
+          <th class="p-3" scope="col">Datum</th>
+          <th class="p-3" scope="col">Fälligkeit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @inbox.messages.with_value(sorted: true).each do |message| %>
+          <tr onclick="window.location='/t';">
+            <td class="p-3"><%= message.sender_address %></td>
+            <td title="<%= message.subject if message.subject.length > 80 %>" class="p-3">
+              <%= message.subject.truncate(80) %>
+            </td>
+            <td class="p-3"><%= number_to_currency(message.value_header) || 'kostenlos' %></td>
+            <td class="p-3"><%= l message.send_at.to_date %></td>
+            <td class="p-3">heute</td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+
+</main>

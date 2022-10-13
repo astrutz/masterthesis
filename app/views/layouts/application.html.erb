@@ -12,16 +12,16 @@
 </head>
 
 <body>
-<nav class="navbar navbar-dark bg-primary">
+<nav class="navbar navbar-dark <%= current_user ? 'bg-info' : 'bg-primary' %>">
   <div class="container-fluid">
     <%= link_to "Pay2Mail", :root, class: 'navbar-brand' %>
     <div class="text-light">
       <% if current_user %>
         Angemeldet als <%= current_user.username %>
-        <%= link_to "Logout", receive_logout_path, class: "text-info" %>
+        <%= link_to "Logout", receive_logout_path, class: "text-light" %>
       <% else %>
-        <%= link_to "Login", receive_login_path, class: "text-info" %> oder
-        <%= link_to "Registrieren", receive_signup_path, class: "text-info" %>
+        <%= link_to "Login", receive_login_path, class: "text-light" %> oder
+        <%= link_to "Registrieren", receive_signup_path, class: "text-light" %>
       <% end %>
     </div>
   </div>

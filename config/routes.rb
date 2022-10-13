@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       resources :priorities
     end
     namespace :receive do
-      root 'inbox#show'
+      root 'inboxes#show'
       get 'login', to: 'sessions#new', as: 'login'
       get 'logout', to: 'sessions#destroy', as: 'logout'
       get 'signup', to: 'recipients#new'

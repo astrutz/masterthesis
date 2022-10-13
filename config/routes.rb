@@ -10,8 +10,16 @@ Rails.application.routes.draw do
       get :capacities, to: 'capacities#index'
       resources :priorities
     end
-    # namespace :recipient do
-    #
-    # end
+    namespace :receive do
+      root 'inbox#show'
+      get 'login', to: 'sessions#new', as: 'login'
+      get 'logout', to: 'sessions#destroy', as: 'logout'
+      get 'signup', to: 'recipients#new'
+      resources :sessions
+      resources :recipients
+    end
+    direct :create_recipients do
+      { action: 'create', controller: 'receive/recipients' }
+    end
   end
 end

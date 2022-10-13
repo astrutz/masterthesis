@@ -1,0 +1,74 @@
+<div class="row mt-4">
+  <div class="col-12">
+    <h1>Registrieren</h1>
+  </div>
+</div>
+
+<div class="row mt-2">
+  <div class="col-10">
+    <p>Um Pay2Mail zu nutzen, müssen Sie einen Account anlegen und Ihre IMAP-Zugangsdaten hinterlegen. Ihre Zugangsdaten
+      werden verschlüsselt gespeichert.</p>
+  </div>
+</div>
+
+<% if params[:error] %>
+  <div class="row mt-4">
+    <div class="col-10">
+      <div class="alert alert-danger" role="alert">
+        Es ist ein Fehler aufgetreten, bitte überprüfen Sie Ihre Eingaben!
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="row mt-4 input-group">
+  <%= form_tag create_recipients_path do %>
+    <h2 class="mb-3">Persönliche Daten</h2>
+    <div class="mb-3 col-sm-6">
+      <%= label_tag :username %>
+      <%= text_field_tag :username, params[:username], class: "form-control", required: true %>
+    </div>
+    <div class="mb-3 col-sm-6">
+      <%= label_tag :password, 'Passwort' %>
+      <%= password_field_tag :password, params[:password], class: "form-control", required: true %>
+    </div>
+    <div class="mb-3 col-sm-6">
+      <%= label_tag :name %>
+      <%= text_field_tag :name, params[:name], class: "form-control", required: true %>
+    </div>
+    <div class="mb-3 col-sm-6">
+      <%= label_tag :editing_performance_per_day, 'Bearbeitungsleistung' %>
+      <%= number_field_tag :editing_performance_per_day, params[:editing_performance_per_day], class: "form-control", required: true %>
+      <div class="form-text">Die Bearbeitungsleistung beschreibt die Anzahl an E-Mails, die Sie pro Tag
+        <strong>garantiert</strong> bearbeiten können.
+      </div>
+    </div>
+
+    <h2 class="mt-5 mb-3">IMAP-Zugangsdaten</h2>
+    <div class="mb-3 col-sm-6">
+      <%= label_tag :server %>
+      <%= text_field_tag :server, params[:server], class: "form-control", placeholder: 'imap@example.com', required: true %>
+    </div>
+    <div class="mb-3 col-sm-6">
+      <%= label_tag :port %>
+      <%= number_field_tag :port, params[:port], class: "form-control", placeholder: 993, required: true %>
+    </div>
+    <div class="mb-3 col-sm-6">
+      <%= label_tag :ssl, 'SSL-Zertifikat' %>
+      <%= text_field_tag :ssl, params[:ssl], class: "form-control", placeholder: 'SSL/TLS', required: true %>
+    </div>
+    <div class="mb-3 col-sm-6">
+      <%= label_tag :auth_type, 'Authentifizierungstyp' %>
+      <%= text_field_tag :auth_type, params[:auth_type], class: "form-control", placeholder: 'Password, normal', required: true %>
+    </div>
+    <div class="mb-3 col-sm-6">
+      <%= label_tag :email_address, 'E-Mail Adresse' %>
+      <%= email_field_tag :email_address, params[:email_address], class: "form-control", placeholder: 'info@example.com', required: true %>
+    </div>
+    <div class="mb-3 col-sm-6">
+      <%= label_tag :email_password, 'E-Mail Passwort' %>
+      <%= password_field_tag :email_password, params[:email_password], class: "form-control", placeholder: 'min. 8 Stellen eingeben', required: true %>
+    </div>
+    <div class="actions"><%= submit_tag "Registrieren" %></div>
+  <% end %>
+</div>

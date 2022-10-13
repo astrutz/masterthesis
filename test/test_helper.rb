@@ -6,6 +6,10 @@ require 'rails/test_help'
 
 module ActiveSupport
   class TestCase
+    include TestPasswordHelper
+
+    ActiveRecord::FixtureSet.context_class.send :include, TestPasswordHelper
+
     # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
 

@@ -1,0 +1,29 @@
+<div class="row mt-4">
+  <div class="col-12">
+    <h1>Login</h1>
+  </div>
+</div>
+
+<% if params[:error] %>
+  <div class="row mt-4">
+    <div class="col-10">
+      <div class="alert alert-danger" role="alert">
+      Falscher Nutzername oder falsches Passwort, bitte versuchen Sie es erneut.
+    </div>
+  </div>
+  </div>
+<% end %>
+
+<div class="row mt-4 input-group">
+  <%= form_tag receive_sessions_path do %>
+    <div class="mb-3 col-sm-6">
+      <%= label_tag :username %>
+      <%= text_field_tag :username, params[:username], class: "form-control" %>
+    </div>
+    <div class="mb-3 col-sm-6">
+      <%= label_tag :passwort %><br/>
+      <%= password_field_tag :password, params[:password], class: "form-control" %>
+    </div>
+    <div class="actions"><%= submit_tag "Login" %></div>
+  <% end %>
+</div>

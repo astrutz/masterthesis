@@ -11,7 +11,8 @@ module Receive
 
     test 'should sign up new recipients' do
       post '/receive/recipients',
-           params: { username: 'foo', password: 'foo', name: 'foo', editing_performance_per_day: 1, server: 'foo', port: 2, ssl: 'foo', auth_type: 'foo', email_address: 'foo@bar.com', email_password: 'aa' }
+           params: { username: 'foo', password: 'foo', name: 'foo', editing_performance_per_day: 1, server: 'foo', port: 2, ssl: 'foo', auth_type: 'foo', email_address: 'foo@bar.com',
+                     email_password: 'aa' }
       assert_equal 'foo', Recipient.last.username
       assert_equal 'foo@bar.com', Credential.last.username
       assert_equal 6, Recipient.all.size

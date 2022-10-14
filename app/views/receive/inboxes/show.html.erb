@@ -21,27 +21,26 @@
         <tr>
           <th class="p-3" scope="col">Absender</th>
           <th class="p-3" scope="col">Betreff</th>
-          <th class="p-3" scope="col">Wert</th>
+          <th class="p-3" scope="col">Gezahlt</th>
           <th class="p-3" scope="col">Datum</th>
           <th class="p-3" scope="col">Fälligkeit</th>
         </tr>
         </thead>
         <tbody>
         <% @inbox.messages.with_value(sorted: true).each do |message| %>
-          <tr onclick="window.location='/t';">
+          <tr onclick="window.location='<%= receive_message_path(message) %>';">
             <td class="p-3"><%= message.sender_address %></td>
             <td title="<%= message.subject if message.subject.length > 80 %>" class="p-3">
               <%= message.subject.truncate(80) %>
             </td>
-            <td class="p-3"><%= number_to_currency(message.value_header) || 'kostenlos' %></td>
+            <td class="p-3"><%= format_value_amount(message.value_header) %></td>
             <td class="p-3"><%= l message.send_at.to_date %></td>
-            <td class="p-3">heute</td>
+            <td class="p-3"><%#= #todo %></td>
           </tr>
         <% end %>
         </tbody>
       </table>
     </div>
-  </div>
   </div>
 
 </main>

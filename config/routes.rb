@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get 'signup', to: 'recipients#new'
       resources :sessions
       resources :recipients
+      resources :messages
     end
     direct :create_recipients do
       { action: 'create', controller: 'receive/recipients' }

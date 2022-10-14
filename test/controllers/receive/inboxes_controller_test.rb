@@ -12,7 +12,7 @@ module Receive
 
     test 'should get /receive when logged in' do
       post '/receive/sessions', params: { username: recipients(:one).username, password: default_password }
-      get "/receive?id=#{recipients(:one).inbox.id}"
+      get '/receive?fetch=false'
       assert_response :success
     end
   end

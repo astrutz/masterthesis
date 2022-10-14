@@ -20,7 +20,6 @@ module Receive
       assert_equal 6, Inbox.all.size
       assert_equal 'foo', Recipient.last.username
       assert_equal 'foo@bar.com', Credential.last.username
-
     end
 
     test 'should not sign up without form data' do

@@ -12,8 +12,7 @@ module Receive
     test 'should login' do
       post '/receive/sessions', params: { username: recipients(:one).username, password: default_password }
       assert_response :redirect
-      puts
-      assert_redirected_to "/receive?id=#{recipients(:one).inbox.id}"
+      assert_redirected_to '/receive'
     end
 
     test 'should logout' do

@@ -8,7 +8,7 @@ module Receive
       recipient = Recipient.find_by(username: params[:username])
       if recipient&.authenticate(params[:password])
         session[:recipient_id] = recipient.id
-        redirect_to receive_root_url(id: recipient.inbox.id)
+        redirect_to receive_root_url
       else
         redirect_to receive_login_path(error: 'true')
       end

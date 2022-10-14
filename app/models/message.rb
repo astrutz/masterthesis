@@ -3,6 +3,11 @@
 class Message < ApplicationRecord
   belongs_to :inbox
 
+  def value
+    value = Value.find_by(uuid: value_header)
+    value.present? ? value.amount : 0
+  end
+
   def self.with_value(sorted: false)
     messages = all
     messages.each do |message|

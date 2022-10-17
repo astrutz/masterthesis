@@ -7,7 +7,7 @@ module Send
     def index
       if @recipient.present?
         inbox = Inbox.find_by(recipient: @recipient)
-        @messages_grouped = Message.where(inbox: inbox).group_by_amount(@recipient.editing_performance_per_day)
+        @messages_grouped = Message.unprocessed.where(inbox: inbox).group_by_amount(@recipient.editing_performance_per_day)
       else
         render 'send/static/404'
       end

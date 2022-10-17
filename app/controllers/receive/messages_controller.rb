@@ -10,10 +10,12 @@ module Receive
 
     def destroy
       message = Message.find(params[:id])
-      EmailServices.establish_connection(current_user.credential)
-      EmailServices.read_message(message)
-      message.delete
-      # TODO: bearbeitungsleistung des tages entsprechend anpassen (später) falls nicht special mail
+      if params[:fetch].nil?
+        EmailServices.establish_connection(current_user.credential)
+        EmailServices.read_message(message)
+      end
+      message.processed_at = Time.now
+      message.save
       redirect_to receive_root_path
     end
   end

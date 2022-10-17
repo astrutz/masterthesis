@@ -2,6 +2,8 @@
 
 class Message < ApplicationRecord
   belongs_to :inbox
+  scope :processed, -> { where.not(processed_at: nil) }
+  scope :unprocessed, -> { where(processed_at: nil) }
 
   def value
     value = Value.find_by(uuid: value_header)

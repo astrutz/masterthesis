@@ -9,7 +9,7 @@ class Value < ApplicationRecord
 
   def target_date
     recipient = Recipient.find_by(email_address: recipient_address)
-    messages_grouped = Message.all.where(recipient_address: recipient_address).group_by_amount(recipient.editing_performance_per_day)
+    messages_grouped = Message.unprocessed.all.where(recipient_address: recipient_address).group_by_amount(recipient.editing_performance_per_day)
     days_to_wait = 1
     messages_grouped.each do |group|
       break if group.last.value_header.to_i < amount

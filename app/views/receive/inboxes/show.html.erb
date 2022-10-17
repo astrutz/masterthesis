@@ -17,7 +17,8 @@
   <% if @messages_due_today > 0 %>
     <div class="row mt-2">
       <div class="col-12">
-        <strong>Sie müssen heute noch <%= @messages_due_today %> E-Mail<%= 's' if @messages_due_today > 1%> bearbeiten.</strong>
+        <strong>Sie müssen heute noch <%= @messages_due_today %> E-Mail<%= 's' if @messages_due_today > 1 %>
+          bearbeiten.</strong>
       </div>
     </div>
   <% end %>
@@ -35,15 +36,15 @@
         </tr>
         </thead>
         <tbody>
-        <% @inbox.messages.unprocessed.with_value(sorted: true).each do |message| %>
-          <tr onclick="window.location='<%= receive_message_path(message) %>';">
+        <% @inbox.messages.unprocessed.with_value(sorted: true).each_with_index do |message, index| %>
+          <tr onclick="window.location='<%= receive_message_path(message, due: (l @due_dates[index])) %>';">
             <td class="p-3"><%= message.sender_address %></td>
             <td title="<%= message.subject if message.subject.length > 80 %>" class="p-3">
               <%= message.subject.truncate(80) %>
             </td>
             <td class="p-3"><%= format_value_amount(message.value_header) %></td>
             <td class="p-3"><%= l message.send_at.to_date %></td>
-            <td class="p-3"><%#= #todo %></td>
+            <td class="p-3"><%= l @due_dates[index] %></td>
           </tr>
         <% end %>
         </tbody>

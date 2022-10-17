@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       get 'login', to: 'sessions#new', as: 'login'
       get 'logout', to: 'sessions#destroy', as: 'logout'
       get 'signup', to: 'recipients#new'
+      get 'message/:id/delete', to: 'messages#destroy', as: 'delete_message'
       resources :sessions
       resources :recipients
       resources :messages

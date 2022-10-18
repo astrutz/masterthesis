@@ -22,6 +22,20 @@ module Receive
       end
     end
 
+    def edit
+      @recipient = Recipient.find(params[:id])
+    end
+
+    def update
+      @recipient = Recipient.find(params[:id])
+      @recipient.editing_performance_per_day = params[:recipient][:editing_performance_per_day]
+      if @recipient.save
+        redirect_to receive_root_path
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    end
+
     def fill_recipient(form_data, inbox)
       recipient = Recipient.new
       recipient.username = form_data[:username]

@@ -30,5 +30,12 @@ module Receive
       assert_equal 2, Credential.all.size
       assert_equal 5, Inbox.all.size
     end
+
+    test 'should update editing performance per day' do
+      post '/receive/sessions', params: { username: recipients(:one).username, password: default_password }
+      patch "/receive/recipients/#{recipients(:one).id}", params: { recipient: { editing_performance_per_day: 2 } }
+      assert_response :redirect
+      assert_redirected_to '/receive'
+    end
   end
 end

@@ -18,6 +18,7 @@
     <div class="text-light">
       <% if current_user %>
         Angemeldet als <%= current_user.username %> |
+        <%= link_to "Einstellungen", edit_receive_recipient_path(current_user.id), class: "text-light" %> |
         <%= link_to "Logout", receive_logout_path, class: "text-light" %>
       <% else %>
         <%= link_to "Login", receive_login_path, class: "text-light" %> |

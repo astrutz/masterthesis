@@ -7,6 +7,7 @@ one:
   send_at: 2022-09-13 12:05:54
   content: MyText
   value_header: 200e2d86-4908-40a0-9ae7-75e2837cfadd
+  inbox: one
 
 two:
   sender_address: two@sender.com
@@ -15,6 +16,7 @@ two:
   send_at: 2022-09-16 16:05:56
   content: MyText
   value_header: d51421de-5df5-44ed-9a32-9bb73e3a853d
+  inbox: one
 
 three:
   sender_address: three@sender.com
@@ -23,6 +25,7 @@ three:
   send_at: 2022-09-23 18:00:54
   content: MyText
   value_header: a0b2be33-01b5-48b3-9697-12fec4ebf3c3
+  inbox: one
 
 four:
   sender_address: four@sender.com
@@ -31,6 +34,7 @@ four:
   send_at: 2022-09-23 18:00:54
   content: MyText
   value_header: 536f109c-2e8c-4629-8541-231cc8d46a27
+  inbox: one
 
 five:
   sender_address: five@sender.com
@@ -38,3 +42,4 @@ five:
   subject: sub_five
   send_at: 2022-09-23 18:00:54
   content: MyText
+  inbox: one

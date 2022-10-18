@@ -18,7 +18,7 @@
 
   <div class="row mt-4">
     <div class="col-12">
-      <%= link_to 'Erledigt', receive_delete_message_path(@message.id), class: 'd-block d-sm-none btn btn-success mb-3' %>
+      <%= link_to 'Erledigt', receive_delete_message_path(@message.id, ruled: params[:ruled]), class: 'd-block d-sm-none btn btn-success mb-3' %>
       <div class="card">
         <div class="p-3 small messages__metadata">
           <div class="row">
@@ -28,10 +28,11 @@
               <p><strong>An:</strong> <%= @message.recipient_address %></p>
               <p><strong>Betreff:</strong> <%= @message.subject %></p>
               <p><strong>Gezahlt:</strong> <%= format_value_amount(@message.value) %></p>
-              <p><strong>Fällig:</strong> <%= params[:due] %></p>
+              <% if params[:due].present? %><p><strong>Fällig:</strong> <%= params[:due] %></p>
+              <% end %>
             </div>
             <div class="col-sm-2">
-              <%= link_to 'Erledigt', receive_delete_message_path(@message.id), class: 'd-none d-sm-block btn btn-success' %>
+              <%= link_to 'Erledigt', receive_delete_message_path(@message.id, ruled: params[:ruled]), class: 'd-none d-sm-block btn btn-success' %>
             </div>
           </div>
         </div>

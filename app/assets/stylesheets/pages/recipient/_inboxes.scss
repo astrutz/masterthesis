@@ -1,12 +1,18 @@
 .inboxes {
-  tr {
-    cursor: pointer;
+  .nav-link {
+    color: $info;
   }
 
-  td, th {
-    width: 1%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  .message-table {
+    tr {
+      cursor: pointer;
+    }
+
+    td, th {
+      width: 1%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 }

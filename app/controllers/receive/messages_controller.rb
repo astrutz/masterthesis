@@ -14,7 +14,7 @@ module Receive
         EmailServices.establish_connection(current_user.credential)
         EmailServices.read_message(message)
       end
-      message.processed_at = Time.now
+      message.processed_at = params[:ruled] == 'true' ? Time.zone.parse('1900-01-01 00:00') : Time.now
       message.save
       redirect_to receive_root_path
     end

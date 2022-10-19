@@ -21,6 +21,7 @@ module Receive
       get "/receive/message/#{messages(:one).id}/delete?fetch=false"
       assert_response :redirect
       assert_redirected_to '/receive'
+      assert_not_nil Message.find(messages(:one).id).processed_at
     end
   end
 end

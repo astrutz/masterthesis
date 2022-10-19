@@ -22,6 +22,7 @@ module Receive
       post '/receive/sessions', params: { username: recipients(:one).username, password: default_password }
       patch "/receive/rules/#{rules(:one).id}", params: { rule: { field_matcher: 'foo', field_to_search: 'bar' } }
       assert_response :redirect
+      assert_redirected_to '/receive/rules'
       assert_equal 'foo', Rule.find(rules(:one).id).field_matcher
       assert_equal 'bar', Rule.find(rules(:one).id).field_to_search
     end
@@ -32,6 +33,7 @@ module Receive
       post '/receive/sessions', params: { username: recipients(:one).username, password: default_password }
       post '/receive/rules', params: { rule: { field_matcher: 'foo', field_to_search: 'bar' } }
       assert_response :redirect
+      assert_redirected_to '/receive/rules'
       assert_equal 3, Rule.all.size
       assert_equal 'foo', Rule.last.field_matcher
     end
@@ -41,6 +43,7 @@ module Receive
       assert_not_empty Rule.where(id: rules(:one).id)
       get "/receive/rule/#{rules(:one).id}/delete"
       assert_response :redirect
+      assert_redirected_to '/receive/rules'
       assert_empty Rule.where(id: rules(:one).id)
     end
   end

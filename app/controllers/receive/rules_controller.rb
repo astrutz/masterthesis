@@ -42,7 +42,7 @@ module Receive
     def destroy
       rule = Rule.find(params[:id])
       rule.delete
-      redirect_to receive_settings_path
+      redirect_to receive_rules_path
     end
   end
 end

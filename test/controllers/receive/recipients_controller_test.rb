@@ -36,6 +36,7 @@ module Receive
       patch '/receive/settings', params: { recipient: { editing_performance_per_day: 2 } }
       assert_response :redirect
       assert_redirected_to '/receive'
+      assert_equal 2, Recipient.find(recipients(:one).id).editing_performance_per_day
     end
   end
 end

@@ -6,7 +6,8 @@ class MessageTest < ActiveSupport::TestCase
   test 'should create message' do
     message = Message.new(inbox: inboxes(:one), sender_address: '', recipient_address: '', subject: '', send_at: Time.now, content: '')
     message.save
-    assert true
+    assert_equal 6, Message.all.size
+    assert_equal inboxes(:one), Message.last.inbox
   end
 
   test 'should fill messages with amount' do
@@ -26,5 +27,17 @@ class MessageTest < ActiveSupport::TestCase
 
     assert_equal messages_grouped.size, 5
     assert_equal messages_grouped, [[messages(:four)], [messages(:one)], [messages(:two)], [messages(:three)], [messages(:five)]]
+  end
+
+  test 'should only show unprocessed messages in scope' do
+    assert_equal 3, Message.unprocessed.size
+  end
+
+  test 'should only show processed messages in scope' do
+    assert_equal 2, Message.processed.size
+  end
+
+  test 'should only show messages matching rules in scope' do
+    assert_equal 1, Message.matches_rules.size
   end
 end

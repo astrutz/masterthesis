@@ -23,11 +23,11 @@ module Receive
     end
 
     def edit
-      @recipient = Recipient.find(params[:id])
+      @recipient = current_user
     end
 
     def update
-      @recipient = Recipient.find(params[:id])
+      @recipient = current_user
       @recipient.editing_performance_per_day = params[:recipient][:editing_performance_per_day]
       if @recipient.save
         redirect_to receive_root_path

@@ -1,0 +1,10 @@
+<%= link_to edit_receive_rule_path(rule), class: 'link_wrapper' do %>
+  <div class="card col-sm-6 mb-2 p-2 rule">
+    <div class="row" style="text-align: center">
+      <div class="col-4"><%= translate_field_to_search(rule.field_to_search) %></div>
+      <div class="col-4">enthält</div>
+      <div class="col-4"><%= rule.field_matcher %></div>
+    </div>
+  </div>
+  <div class="col-sm-6"></div>
+<% end %>

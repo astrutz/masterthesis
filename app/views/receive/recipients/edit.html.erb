@@ -1,18 +1,27 @@
+<div class="row mt-2">
+  <%= link_to '← Zurück zum Posteingang', receive_root_path, class: 'back-button' %>
+</div>
+
 <div class="row mt-4">
   <div class="col-12">
     <h1>Einstellungen</h1>
   </div>
 </div>
 
-<div class="row mt-3 input-group">
-  <%= form_with model: @recipient, url: { :action => "update", :controller => "receive/recipients" }, method: :patch do |form| %>
-    <div class="mb-3 col-sm-6">
-      <%= form.label :editing_performance_per_day, 'Bearbeitungsleistung' %>
-      <%= form.number_field :editing_performance_per_day, class: "form-control", required: true %>
-      <div class="form-text">Die Bearbeitungsleistung beschreibt die Anzahl an E-Mails, die Sie pro Tag
-        <strong>garantiert</strong> bearbeiten können.
-      </div>
+<%= form_with model: @recipient, url: receive_settings_path, method: :patch, class: 'row mt-3 input-group' do |form| %>
+  <div class="mb-3 col-sm-6">
+    <%= form.label :editing_performance_per_day, 'Bearbeitungsleistung' %>
+    <%= form.number_field :editing_performance_per_day, class: "form-control", required: true %>
+    <div class="form-text">Die Bearbeitungsleistung beschreibt die Anzahl an E-Mails, die Sie pro Tag
+      <strong>garantiert</strong> bearbeiten können.
     </div>
-    <div class="actions"><%= form.submit 'Einstellungen übernehmen' %></div>
-  <% end %>
-</div>
+  </div>
+  <div class="col-sm-6">
+  </div>
+
+  <div class="mt-3 mb-3">
+    <%= link_to 'Ausnahmeregeln bearbeiten', receive_rules_path %>
+  </div>
+
+  <div class="actions mt-3"><%= form.submit 'Einstellungen übernehmen' %></div>
+<% end %>

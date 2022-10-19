@@ -31,6 +31,10 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.back-button:visited {
+  color: $info;
+}
+
 .link_wrapper {
   text-decoration: none;
   color: black;

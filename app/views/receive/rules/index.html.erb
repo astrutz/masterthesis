@@ -1,0 +1,31 @@
+<main class="rules">
+
+  <div class="row mt-2">
+    <%= link_to '← Zurück zu den Einstellungen', receive_settings_path, class: 'back-button' %>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-12">
+      <h1>Ausnahmeregeln</h1>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-12">
+      <p>Sie können Regeln definieren, nach welcher eine Nachricht als Ausnahme gilt und bereits vor ihrer Fälligkeit
+        bearbeitet werden kann. Eine Regel besteht aus einem Feld, welches nach einem gegebenen Wert durchsucht wird.
+        Mehrere Regeln werden mit ODER verknüpft.
+        Beachten Sie, dass diese Nachrichten <strong>nicht</strong> zu Ihrer Bearbeitungsleistung
+        zählen.</p>
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <%= link_to 'Neue Regel erstellen', new_receive_rule_path %>
+  </div>
+
+  <div class="row mt-4">
+    <%= render @rules || 'Sie haben bisher keine Regeln erstellt' %>
+  </div>
+
+</main>

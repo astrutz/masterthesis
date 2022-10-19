@@ -1,9 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  field_to_search: MyString
-  field_matcher: MyString
+  field_to_search: subject
+  field_matcher: sub_one
+  inbox: one
 
 two:
-  field_to_search: MyString
-  field_matcher: MyString
+  field_to_search: sender_address
+  field_matcher: two@sender.com
+  inbox: two

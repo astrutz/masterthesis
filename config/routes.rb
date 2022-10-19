@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Rails.application.routes.draw do
+Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   root 'overview#index'
 
   localized do
@@ -18,9 +18,11 @@ Rails.application.routes.draw do
       get 'message/:id/delete', to: 'messages#destroy', as: 'delete_message'
       get 'settings', to: 'recipients#edit'
       patch 'settings', to: 'recipients#update'
+      get 'rule/:id/delete', to: 'rules#destroy', as: 'delete_rule'
       resources :sessions
       resources :recipients
       resources :messages
+      resources :rules
     end
     direct :create_recipients do
       { action: 'create', controller: 'receive/recipients' }

@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <%= form_with model: Value.new, url: { :action => "create", :controller => "sender/priorities" }, method: :post do |form| %>
+  <%= form_with model: Value.new, url: { :action => "create", :controller => "send/priorities" }, method: :post do |form| %>
     <div class="row mt-4">
       <div class="col-sm-4 pb-4">
         <%= form.email_field :sender_address, class: 'form-control', required: true, placeholder: 'Ihre E-Mail Adresse' %>

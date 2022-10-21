@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Sender
+module Send
   class NavigateController < ApplicationController
     def index
       case params[:commit]

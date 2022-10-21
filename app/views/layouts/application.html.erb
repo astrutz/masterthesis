@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <title>Pay2Mail</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Pay2Mail</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <%= javascript_importmap_tags %>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <%= javascript_importmap_tags %>
+</head>
 
-  <body>
-  <nav class="navbar navbar-dark bg-primary">
-    <div class="container-fluid">
-      <%= link_to "Pay2Mail", :root, class: 'navbar-brand' %>
+<body>
+<nav class="navbar navbar-dark <%= current_user ? 'bg-info' : 'bg-primary' %>">
+  <div class="container-fluid">
+    <%= link_to "Pay2Mail", :root, class: 'navbar-brand' %>
+    <div class="text-light">
+      <% if current_user %>
+        Angemeldet als <%= current_user.username %> |
+        <%= link_to "Einstellungen", receive_settings_path, class: "text-light" %> |
+        <%= link_to "Logout", receive_logout_path, class: "text-light" %>
+      <% else %>
+        <%= link_to "Login", receive_login_path, class: "text-light" %> |
+        <%= link_to "Registrieren", receive_signup_path, class: "text-light" %>
+      <% end %>
     </div>
-  </nav>
-
-  <div class="container">
-    <%= yield %>
   </div>
-  </body>
+</nav>
+
+<div class="container">
+  <%= yield %>
+</div>
+
+<footer class="<%= current_user ? 'bg-info' : 'bg-primary' %>">
+
+</footer>
+</body>
 </html>

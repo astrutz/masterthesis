@@ -1,4 +1,5 @@
 $primary: #650265;
+$info: #0a58ca;
 
 @import "bootstrap";
 
@@ -30,10 +31,26 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.back-button:visited {
+  color: $info;
+}
+
 .link_wrapper {
   text-decoration: none;
   color: black;
   :hover {
     color: $primary;
   }
+}
+
+body {
+  margin-bottom: 6rem;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  margin-top: 2rem;
+  height: 4rem;
+  width: 100%;
 }

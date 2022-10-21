@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-module Sender
+module Send
   class CapacitiesControllerTest < ActionDispatch::IntegrationTest
     test '/send/capacity should respond with 200' do
       recipient_address = recipients(:one).email_address
@@ -21,7 +21,7 @@ module Sender
       recipient = recipients(:one)
       get "/send/capacity?recipient=#{recipient.email_address}&fetch=false"
       assert_response :success
-      assert_match I18n.l(1.days.from_now.to_date), response.body
+      assert_match I18n.l(3.days.from_now.to_date), response.body
     end
 
     test 'should show recipient not found' do

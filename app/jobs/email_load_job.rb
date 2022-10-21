@@ -8,25 +8,11 @@ class EmailLoadJob < ApplicationJob
     recipients.each do |recipient|
       puts "Checking #{recipient.username}"
       credential = recipient.credential
-      establish_connection(credential)
-      messages = fetch_new_messages
+      EmailServices.establish_connection(credential)
+      messages = EmailServices.fetch_new_messages
       save_messages(messages)
     end
     puts 'Job finished'
-  end
-
-  def establish_connection(credential)
-    Mail.defaults do
-      retriever_method :imap, address: credential.server,
-                              port: credential.port,
-                              user_name: credential.username,
-                              password: credential.password,
-                              enable_ssl: true
-    end
-  end
-
-  def fetch_new_messages
-    Mail.find(keys: %w[NOT SEEN], read_only: true)
   end
 
   def save_messages(messages)

@@ -1,5 +1,6 @@
 de:
   routes:
-    sender: "send"
+    send: "send"
     priorities: "priority"
     capacities: "capacity"
+    receive: "receive"

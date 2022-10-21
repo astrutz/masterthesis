@@ -3,39 +3,39 @@
 one:
   name: MyString
   email_address: one@recipient.com
-  username: MyString
-  password_digest: MyString
+  username: UsernameOne
+  password_digest: <%= default_password_digest %>
   editing_performance_per_day: 1
   inbox: one
 
 two:
   name: MyString
   email_address: two@recipient.com
-  username: MyString
-  password_digest: MyString
+  username: UsernameTwo
+  password_digest: <%= default_password_digest %>
   editing_performance_per_day: 1
   inbox: two
 
 three:
   name: MyString
   email_address: three@recipient.com
-  username: MyString
-  password_digest: MyString
+  username: UsernameThree
+  password_digest: <%= default_password_digest %>
   editing_performance_per_day: 1
   inbox: two
 
 four:
   name: MyString
   email_address: four@recipient.com
-  username: MyString
-  password_digest: MyString
+  username: UsernameFour
+  password_digest: <%= default_password_digest %>
   editing_performance_per_day: 1
   inbox: two
 
 five:
   name: MyString
   email_address: five@recipient.com
-  username: MyString
-  password_digest: MyString
+  username: UsernameFive
+  password_digest: <%= default_password_digest %>
   editing_performance_per_day: 1
   inbox: two

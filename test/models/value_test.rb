@@ -4,9 +4,10 @@ require 'test_helper'
 
 class ValueTest < ActiveSupport::TestCase
   test 'should create value' do
-    value = Value.new(sender_address: '', recipient_address: '', amount: 1)
+    value = Value.new(sender_address: 'send', recipient_address: '', amount: 1)
     value.save
-    assert true
+    assert_equal 5, Value.all.size
+    assert_equal 'send', Value.last.sender_address
   end
 
   test 'should have uuid' do

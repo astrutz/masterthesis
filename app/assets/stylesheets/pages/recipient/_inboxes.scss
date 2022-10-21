@@ -1,0 +1,18 @@
+.inboxes {
+  .nav-link {
+    color: $info;
+  }
+
+  .message-table {
+    tr {
+      cursor: pointer;
+    }
+
+    td, th {
+      width: 1%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}

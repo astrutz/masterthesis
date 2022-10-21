@@ -1,0 +1,26 @@
+.messages {
+  .messages__metadata {
+    background-color: #cfe2ff;
+    border-bottom: 2px dashed grey;
+
+    p {
+      margin-bottom: 0.5em;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    .d-sm-none {
+      margin-bottom: 1000px;
+    }
+
+    .d-sm-block {
+      float: right;
+    }
+  }
+
+  .messages__content {
+    background-color: #cfe2ff;
+  }
+}

@@ -1,0 +1,13 @@
+.rules {
+  .rule {
+    cursor: pointer;
+
+    &:hover {
+      background-color: #bfcde2;
+
+      .col-4 {
+        color: black;
+      }
+    }
+  }
+}

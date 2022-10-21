@@ -12,7 +12,7 @@ module Masterthesis
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-    I18n.available_locales = [:de]
+    I18n.available_locales = %i[de en]
     config.i18n.default_locale = :de
   end
 end

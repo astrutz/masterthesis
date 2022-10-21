@@ -1,0 +1,105 @@
+<main class="inboxes">
+
+  <div class="row mt-4">
+    <div class="col-12">
+      <h1>Posteingang von <%= @inbox.recipient.name %></h1>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-12">
+      <p>Folgend sehen Sie Ihre E-Mails für Sie nach gezahltem Gegenwert sortiert. Bitte lassen Sie diese E-Mails in
+        Ihrem E-Mail Client als "ungelesen" markiert und wählen Sie "erledigt" aus, wenn sie bearbeitet wurde. Die
+        E-Mail wird dann automatisch als ungelesen markiert.</p>
+    </div>
+  </div>
+
+  <% if @messages_due_today > 0 %>
+    <div class="row mt-2">
+      <div class="col-12">
+        <strong>Sie müssen heute noch <%= @messages_due_today %> E-Mail<%= 's' if @messages_due_today > 1 %>
+          bearbeiten.</strong>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row mt-4">
+    <div class="col-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages-tab-pane" type="button" role="tab" aria-controls="messages-tab-pane" aria-selected="true">Priorisierter
+            Posteingang
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="ruled-tab" data-bs-toggle="tab" data-bs-target="#ruled-tab-pane" type="button" role="tab" aria-controls="ruled-tab-pane" aria-selected="false">Nachrichten
+            mit Ausnahmeregeln
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="messages-tab-pane" role="tabpanel" aria-labelledby="messages-tab" tabindex="0">
+          <% if @inbox.messages.unprocessed.with_value(sorted: true).size > 0 %>
+            <table class="table table-striped table-info table-hover message-table">
+              <thead>
+              <tr>
+                <th class="p-3" scope="col">Absender</th>
+                <th class="p-3" scope="col">Betreff</th>
+                <th class="p-3" scope="col">Gezahlt</th>
+                <th class="p-3" scope="col">Datum</th>
+                <th class="p-3" scope="col">Fälligkeit</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @inbox.messages.unprocessed.with_value(sorted: true).each_with_index do |message, index| %>
+                <tr onclick="window.location='<%= receive_message_path(message, due: (l @due_dates[index]), ruled: false) %>';">
+                  <td class="p-3"><%= message.sender_address %></td>
+                  <td title="<%= message.subject if message.subject.length > 80 %>" class="p-3">
+                    <%= message.subject.truncate(80) %>
+                  </td>
+                  <td class="p-3"><%= format_value_amount(message.value_header) %></td>
+                  <td class="p-3"><%= l message.send_at.to_date %></td>
+                  <td class="p-3"><%= l @due_dates[index] %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          <% else %>
+            <h5 class="mt-4">
+              Keine Nachrichten vorhanden.
+            </h5>
+          <% end %>
+        </div>
+        <div class="tab-pane fade" id="ruled-tab-pane" role="tabpanel" aria-labelledby="ruled-tab" tabindex="0">
+          <% if @inbox.messages.unprocessed.matches_rules.size > 0 %>
+            <table class="table table-striped table-info table-hover message-table">
+              <thead>
+              <tr>
+                <th class="p-3" scope="col">Absender</th>
+                <th class="p-3" scope="col">Betreff</th>
+                <th class="p-3" scope="col">Datum</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @inbox.messages.unprocessed.matches_rules.each do |message| %>
+                <tr onclick="window.location='<%= receive_message_path(message, ruled: true) %>';">
+                  <td class="p-3"><%= message.sender_address %></td>
+                  <td title="<%= message.subject if message.subject.length > 80 %>" class="p-3">
+                    <%= message.subject.truncate(80) %>
+                  </td>
+                  <td class="p-3"><%= l message.send_at.to_date %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          <% else %>
+            <h5 class="mt-4">
+              Keine Nachrichten vorhanden.
+            </h5>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>

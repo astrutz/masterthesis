@@ -21,7 +21,7 @@ module Send
       recipient = recipients(:one)
       get "/send/capacity?recipient=#{recipient.email_address}&fetch=false"
       assert_response :success
-      assert_match I18n.l(3.days.from_now.to_date), response.body
+      assert_match I18n.l(2.days.from_now.to_date), response.body
     end
 
     test 'should show recipient not found' do

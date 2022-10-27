@@ -7,7 +7,9 @@ module Send
     def index
       if @recipient.present?
         inbox = Inbox.find_by(recipient: @recipient)
-        @messages_grouped = Message.unprocessed.where(inbox: inbox).group_by_amount(@recipient.editing_performance_per_day)
+        messages_due_today = @recipient.editing_performance_per_day - inbox.messages.where(processed_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).size
+        @messages_sorted = Message.unprocessed.where(inbox: inbox).with_value(sorted: true)
+        @due_dates = DueDateServices.due_dates(inbox, messages_due_today)
       else
         render 'send/static/404'
       end

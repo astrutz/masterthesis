@@ -9,13 +9,9 @@ class Value < ApplicationRecord
 
   def target_date
     recipient = Recipient.find_by(email_address: recipient_address)
-    messages_grouped = Message.unprocessed.all.where(recipient_address: recipient_address).group_by_amount(recipient.editing_performance_per_day)
-    days_to_wait = 1
-    messages_grouped.each do |group|
-      break if group.last.value_header.to_i < amount
-
-      days_to_wait += 1
-    end
-    days_to_wait.days.from_now
+    inbox = recipient.inbox
+    messages_due_today = recipient.editing_performance_per_day - inbox.messages.where(processed_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).size
+    due_dates = DueDateServices.due_dates(recipient.inbox, messages_due_today)
+    due_dates[-1] += 1
   end
 end

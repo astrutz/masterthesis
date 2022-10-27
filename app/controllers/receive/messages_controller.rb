@@ -6,7 +6,7 @@ module Receive
 
     def show
       @message = Message.find(params[:id])
-      @processable = (params[:due].present? && params[:due] == I18n.l(Time.now.to_date))
+      @processable = (params[:due].present? && params[:due] == I18n.l(Time.now.to_date)) || (params[:ruled].present? && params[:ruled] == 'true')
     end
 
     def destroy

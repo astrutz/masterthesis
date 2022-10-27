@@ -24,11 +24,13 @@
       </tr>
       </thead>
       <tbody>
-      <% @messages_grouped.each_with_index do |group, i| %>
-        <% next if i < @messages_grouped.size - 1 && group.last.value_header == @messages_grouped[i + 1].last.value_header %>
+      <% last_due_date = nil %>
+      <% @due_dates.each_with_index do |due_date, i| %>
+        <% next if last_due_date == due_date %>
+        <% last_due_date = due_date %>
         <tr>
-          <td><%= l (group.size == @recipient.editing_performance_per_day ? i + 2 : i + 1).days.from_now.to_date %></td>
-          <td><%= group.last.value_header.present? ? number_to_currency(group.last.value_header.to_f + 1) : "kostenfrei" %></td>
+          <td><%= l due_date %></td>
+          <td><%= @messages_sorted[i].value_header.present? ? number_to_currency(@messages_sorted[i].value_header.to_f + 1) : number_to_currency(1) %></td>
         </tr>
       <% end %>
       </tbody>

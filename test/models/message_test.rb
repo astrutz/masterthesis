@@ -15,20 +15,6 @@ class MessageTest < ActiveSupport::TestCase
     assert_equal [0, 3, 6, 15, 20], messages_filled_sorted
   end
 
-  test 'should group messages by multiple editing_performance' do
-    messages_grouped = Message.group_by_amount(2)
-
-    assert_equal messages_grouped.size, 3
-    assert_equal messages_grouped, [[messages(:four), messages(:one)], [messages(:two), messages(:three)], [messages(:five)]]
-  end
-
-  test 'should group messages by singular editing_performance' do
-    messages_grouped = Message.group_by_amount(1)
-
-    assert_equal messages_grouped.size, 5
-    assert_equal messages_grouped, [[messages(:four)], [messages(:one)], [messages(:two)], [messages(:three)], [messages(:five)]]
-  end
-
   test 'should only show unprocessed messages in scope' do
     assert_equal 3, Message.unprocessed.size
   end

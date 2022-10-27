@@ -22,16 +22,22 @@ class EmailLoadJob < ApplicationJob
       subject = message.subject
       send_at = message.date
       value_header = message.header['X-Pay2Mail-Priority']
-      content = message.decoded
+      content = message_body(message)
+      multipart = message.multipart?
       duplicate = Message.find_by(sender_address: from, recipient_address: to, send_at: send_at)
       next if duplicate.present?
 
       puts 'New Message to save'
       recipient = Recipient.find_by(email_address: to)
       inbox = Inbox.find_by(recipient: recipient)
-      message = Message.new(inbox: inbox, sender_address: from, recipient_address: to, subject: subject, send_at: send_at, content: content)
+      message = Message.new(inbox: inbox, sender_address: from, recipient_address: to, subject: subject, send_at: send_at, content: content, multipart: multipart)
       message.value_header = value_header if value_header.present?
       message.save
     end
+  end
+
+  def message_body(message)
+    message = message.parts.find { |part| part.content_type.include? 'text/html' } if message.multipart?
+    message.decoded
   end
 end

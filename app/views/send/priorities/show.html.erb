@@ -15,7 +15,7 @@
         Ihre Zahlung war erfolgreich. Ihr Zugangscode lautet: <strong><%= @uuid %></strong> und ist für 30 Minuten
         nutzbar.
         Bitte speichern Sie diesen Code und setzen Sie ihn als E-Mail Header "X-Pay2Mail-Priority" in Ihrem E-Mail
-        Client. Ihre E-Mail wird spätestens am <%= params[:target].to_date %> bearbeitet
+        Client. Ihre E-Mail wird spätestens am <%= l params[:target].to_date %> bearbeitet
       </div>
     <% else %>
       <div class="alert alert-danger" role="alert">

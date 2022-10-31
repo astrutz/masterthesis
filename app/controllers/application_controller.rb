@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   I18n.locale = :de
+  http_basic_authenticate_with name: ENV['BASIC_USER'], password: ENV['BASIC_PASSWORD'] if ENV['BASIC_USER'].present?
 
   private
 

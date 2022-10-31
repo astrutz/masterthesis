@@ -5,12 +5,16 @@ class Message < ApplicationRecord
   scope :processed, -> { where.not(processed_at: nil) }
   scope :unprocessed, -> { where(processed_at: nil) }
   scope :matches_rules, lambda {
-    rules = first.inbox.rules
     results = []
-    rules.each do |rule|
-      results << where(Message.arel_table[rule.field_to_search].matches("%#{rule.field_matcher}%")).to_a
+    if first.present?
+      rules = first.inbox.rules
+      rules.each do |rule|
+        results << where(Message.arel_table[rule.field_to_search].matches("%#{rule.field_matcher}%")).to_a
+      end
+      results.flatten.uniq.sort_by { |e| e[:send_at] }
+    else
+      results
     end
-    results.flatten.uniq.sort_by { |e| e[:send_at] }
   }
 
   def value
